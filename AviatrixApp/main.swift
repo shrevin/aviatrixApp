@@ -7,17 +7,17 @@
 //
 
 import Foundation
-
+//HOW DOES IT MAKE SENSE THAT IN THE FUNCTION BELOW, THERE IS MYPLANE:AVIATRIX
 func gauges(myPlane : Aviatrix) {
     print("Reading the gauges...")
     print(" ")
     print("| Running:  | ✅")
     print("| Location:  | \(myPlane.currentLocation)")
-//    print("| Distance:  | \(myPlane.distanceTraveled) miles")
-//    print("| Fuel:      | \(myPlane.fuelLevel) gallons")
-//    print("| Max Fuel:  | \(myPlane.maxFuel) gallons")
-//    print("| MPG:       | \(myPlane.milesPerGallon)")
-//    print("| Fuel Bill: | \(myPlane.fuelCost)")
+    print("| Distance:  | \(myPlane.distanceTraveled) miles")
+    print("| Fuel:      | \(myPlane.fuelLevel) gallons")
+    print("| Max Fuel:  | \(myPlane.maxFuel) gallons")
+    print("| MPG:       | \(myPlane.milesPerGallon)")
+    print("| Fuel Bill: | \(myPlane.fuelCost)")
 }
 
 func fly(myPlane : Aviatrix) {
@@ -56,8 +56,12 @@ func refuel(myPlane : Aviatrix) {
     let refuelData = myPlane.refuel()
     
     print("Refueling...")
-    print("⛽ Here in _________, jet fuel costs _________")
-    print("⛽ You refueled _________ gallons totaling _________")
+    let data = AviatrixData().fuelPrices
+    //the variable above represents the fuel prices
+    
+    print("⛽ Here in \(myPlane.currentLocation), jet fuel costs $\(data[myPlane.currentLocation]!)")
+        //the part above means that the actual current location is being matched to the one from Aviatrix class
+    print("⛽ You refueled \(myPlane.refuel()) gallons totaling \(myPlane.fuelCost)")
 }
 
 func fuelCheck(myPlane : Aviatrix, destination : String) -> Bool {

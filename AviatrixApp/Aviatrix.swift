@@ -15,6 +15,11 @@ class Aviatrix {
     var data = AviatrixData()
     var currentLocation = "St. Louis"
     // there needs to be a value for location b/c plane has to start somewhere (above)
+    var distanceTraveled = 0 //miles
+    var maxFuel = 5000 //gallons
+    var fuelLevel = 5000.0
+    var milesPerGallon = 0.4 //m/g
+    var fuelCost = 0.0
 
     init (userName : String){
         author = userName
@@ -26,12 +31,25 @@ class Aviatrix {
         return running
     }
     
-    func refuel() {
-        
+    func refuel() -> Double {
+        let gallonsNeeded = Double(maxFuel) - fuelLevel
+        let data = AviatrixData()
+        //the object above is from the AviatrixData class
+        fuelCost += gallonsNeeded * data.fuelPrices[currentLocation]!
+        fuelLevel = 5000.0
+        return gallonsNeeded
+        //EVERY TIME YOU RETURN, YOU NEED TO DO THE ARROW THING AND SPECIFY DATATYE ON FIRST LINE
     }
     
     func flyTo(destination : String) {
-        //you want the currentLocation to update to the destination that the user inputs
+        // the += adds the old value to the new value
+        distanceTraveled += distanceTo(currentLocation: currentLocation, target: destination)
+        //create a fuelSpent variable that calculates how much fuel you have used
+        let fuelSpent = Double(distanceTraveled) / milesPerGallon
+        //update fuelLevel fased on fuelSpent
+        fuelLevel -= fuelSpent
+        //or fuelLevel -= fuelSpent
+        //you want the currentLocation to update to the destination that the user inputs (below)
         currentLocation = destination
     }
     
