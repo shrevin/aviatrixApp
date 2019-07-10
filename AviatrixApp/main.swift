@@ -73,10 +73,12 @@ func fuelCheck(myPlane : Aviatrix, destination : String) -> Bool {
 //    }
     return true
 }
+//making object for user to enter (plane is the object variable that holds the Aviatrix class that determines the username
+//plane refers to all the properties in the Aviatrix class (you have to specify author b/c computer needs to know what property you are referring to)
+var plane = Aviatrix(userName : "Shreya" )
 
-var plane = Aviatrix()
-
-print("Welcome to the Aviatrix Flight System by _________")
+print("Welcome to the Aviatrix Flight System by \(plane.author)")
+//author refers to the author equal to userName in the Aviatrix class
 plane.start()
 
 print("You're currently in _________")
@@ -109,4 +111,4 @@ while command != "q" {
 }
 
 print(" ")
-print("Thanks for flying with _________ airline!")
+print("Thanks for flying with \(plane.author) airline!")
