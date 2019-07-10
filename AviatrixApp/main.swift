@@ -11,8 +11,8 @@ import Foundation
 func gauges(myPlane : Aviatrix) {
     print("Reading the gauges...")
     print(" ")
-//    print("| Running:  | ✅")
-//    print("| Location:  | \(myPlane.location)")
+    print("| Running:  | ✅")
+    print("| Location:  | \(myPlane.currentLocation)")
 //    print("| Distance:  | \(myPlane.distanceTraveled) miles")
 //    print("| Fuel:      | \(myPlane.fuelLevel) gallons")
 //    print("| Max Fuel:  | \(myPlane.maxFuel) gallons")
@@ -24,9 +24,10 @@ func fly(myPlane : Aviatrix) {
     print("Where would you like to fly to? ")
     print(" ")
     let destinations = myPlane.knownDestinations()
+    //you are making variables equal to the function from the Aviatrix swift file
     
     for (index, city) in destinations.enumerated() {
-        let distance = myPlane.distanceTo(target: city)
+        let distance = myPlane.distanceTo(currentLocation: myPlane.currentLocation, target: city)
         print("\(index): \(city), \(distance) miles")
     }
     
@@ -41,7 +42,7 @@ func fly(myPlane : Aviatrix) {
         
         if fuelCheck(myPlane: myPlane, destination : desiredLocation) {
             myPlane.flyTo(destination: desiredLocation)
-            print("🛬 You've arrived in _________!")
+            print("🛬 You've arrived in \(plane.currentLocation)!")
             gauges(myPlane: myPlane)
         }
     }
@@ -75,13 +76,14 @@ func fuelCheck(myPlane : Aviatrix, destination : String) -> Bool {
 }
 //making object for user to enter (plane is the object variable that holds the Aviatrix class that determines the username
 //plane refers to all the properties in the Aviatrix class (you have to specify author b/c computer needs to know what property you are referring to)
+//an object can be any random object from the class, Aviatrix, the stuff in parenthesis is not mandatory
 var plane = Aviatrix(userName : "Shreya" )
 
 print("Welcome to the Aviatrix Flight System by \(plane.author)")
 //author refers to the author equal to userName in the Aviatrix class
 plane.start()
 
-print("You're currently in _________")
+print("You're currently in \(plane.currentLocation)!")
 
 var command = ""
 

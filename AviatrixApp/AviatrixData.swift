@@ -18,6 +18,7 @@ class AviatrixData {
     ]
     
     var knownDistances = [
+        // this is a dictionary in a dictionary
         "St. Louis" : [
             "St. Louis" : 0,
             "Phoenix" : 1260,
